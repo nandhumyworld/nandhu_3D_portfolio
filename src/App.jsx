@@ -1,27 +1,20 @@
-import { BrowserRouter } from "react-router-dom";
+import Nav from "./components/shared/Nav";
+import FloatingCTA from "./components/shared/FloatingCTA";
+import Hero from "./components/rooms/Hero";
+import Seeker from "./components/rooms/Seeker";
 
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
-
-const App = () => {
+export default function App() {
   return (
-    <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-          <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <Feedbacks />
-        <div className='relative z-0'>
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
-    </BrowserRouter>
+    <div className="bg-bg-dark text-text-dark min-h-screen">
+      <Nav />
+      <main>
+        <Hero />
+        {/* Rooms in scroll order; each is added as content is captured */}
+        {/* Story · Coach · Tribe · eyediaWorks · Farm · Human · Career · Certifications — pending */}
+        <Seeker />
+        {/* Connect — pending */}
+      </main>
+      <FloatingCTA />
+    </div>
   );
 }
-
-export default App;
