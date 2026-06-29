@@ -27,19 +27,24 @@ export default function Connect() {
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [errorMsg, setErrorMsg] = useState("");
 
-  // Lazy-load Calendly widget script on mount
+  // Init EmailJS once + lazy-load Calendly widget
   useEffect(() => {
-    if (document.getElementById("calendly-script")) return;
-    const s = document.createElement("script");
-    s.id = "calendly-script";
-    s.src = "https://assets.calendly.com/assets/external/widget.js";
-    s.async = true;
-    document.body.appendChild(s);
-    const link = document.createElement("link");
-    link.id = "calendly-css";
-    link.rel = "stylesheet";
-    link.href = "https://assets.calendly.com/assets/external/widget.css";
-    document.head.appendChild(link);
+    if (PUBLIC_KEY) {
+      // v3 API: init accepts the key as a plain string
+      emailjs.init(PUBLIC_KEY);
+    }
+    if (!document.getElementById("calendly-script")) {
+      const s = document.createElement("script");
+      s.id = "calendly-script";
+      s.src = "https://assets.calendly.com/assets/external/widget.js";
+      s.async = true;
+      document.body.appendChild(s);
+      const link = document.createElement("link");
+      link.id = "calendly-css";
+      link.rel = "stylesheet";
+      link.href = "https://assets.calendly.com/assets/external/widget.css";
+      document.head.appendChild(link);
+    }
   }, []);
 
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
@@ -68,12 +73,14 @@ export default function Connect() {
           sent_at: new Date().toISOString(),
           source: "Portfolio Connect Form",
         },
-        { publicKey: PUBLIC_KEY }
+        PUBLIC_KEY // v3 API: key as 4th arg string
       );
       setStatus("success");
     } catch (err) {
+      // err.status + err.text reveal what EmailJS rejected
       console.error("EmailJS error:", err);
-      fail("Couldn't send. Email me directly at " + profile.email);
+      const detail = err?.text ? ` (${err.status}: ${err.text})` : "";
+      fail(`Couldn't send${detail}. Email me directly at ${profile.email}`);
     }
   }
 
