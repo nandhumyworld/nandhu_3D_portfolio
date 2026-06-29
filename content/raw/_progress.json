@@ -1,6 +1,6 @@
 {
-  "completed": [],
-  "current": "01-hero",
+  "completed": ["01-hero"],
+  "current": "02-seeker",
   "rooms": [
     "01-hero",
     "02-seeker",
@@ -14,6 +14,6 @@
     "10-certifications",
     "11-dividers"
   ],
-  "lastUpdated": null,
+  "lastUpdated": "2026-06-29T00:00:00Z",
   "allComplete": false
 }
