@@ -1,0 +1,19 @@
+{
+  "completed": [],
+  "current": "01-hero",
+  "rooms": [
+    "01-hero",
+    "02-seeker",
+    "03-timeline",
+    "04-human",
+    "05-career",
+    "06-coach",
+    "07-tribe",
+    "08-eyediaworks",
+    "09-farm",
+    "10-certifications",
+    "11-dividers"
+  ],
+  "lastUpdated": null,
+  "allComplete": false
+}
