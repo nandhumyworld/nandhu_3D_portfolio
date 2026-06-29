@@ -1,6 +1,6 @@
 {
-  "completed": ["01-hero"],
-  "current": "02-seeker",
+  "completed": ["01-hero", "02-seeker"],
+  "current": "03-timeline",
   "rooms": [
     "01-hero",
     "02-seeker",
