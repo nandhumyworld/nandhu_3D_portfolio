@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { profile } from "../../constants/profile";
 import SocialLinks from "../shared/SocialLinks";
 import BookCallCTA from "../shared/BookCallCTA";
+import FounderAtom from "../shared/FounderAtom";
 
 function RoleRotator({ roles }) {
   const [i, setI] = useState(0);
@@ -45,16 +46,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pt-28 pb-20 text-center">
-        {profile.avatar && (
-          <motion.img
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-            src={profile.avatar}
-            alt={profile.name}
-            className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border border-accent-gold/40 shadow-xl shadow-accent-gold/10 mb-6"
-          />
-        )}
+        <FounderAtom />
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}

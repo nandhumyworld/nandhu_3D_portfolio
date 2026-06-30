@@ -4,14 +4,14 @@ import BookCallCTA from "./BookCallCTA";
 
 const LINKS = [
   { id: "home", label: "Home" },
-  { id: "story", label: "Story" },
-  { id: "coach", label: "Coach" },
-  { id: "tribe", label: "Tribe" },
-  { id: "eyediaworks", label: "eyediaWorks" },
-  { id: "farm", label: "Farm" },
   { id: "human", label: "The Human" },
+  { id: "story", label: "Story" },
   { id: "career", label: "Career" },
   { id: "certifications", label: "Certifications" },
+  { id: "eyediaworks", label: "EyediaWorks" },
+  { id: "coach", label: "Coach" },
+  { id: "tribe", label: "Tribe" },
+  { id: "farm", label: "Farm" },
   { id: "seeker", label: "Seeker" },
 ];
 

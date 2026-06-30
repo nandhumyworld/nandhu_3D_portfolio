@@ -121,6 +121,35 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Founder Atom — orbiting brand logos */
+.founder-perspective {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+.founder-spin {
+  animation-name: founder-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-style: preserve-3d;
+}
+.founder-counter {
+  animation-name: founder-counter-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-style: preserve-3d;
+}
+@keyframes founder-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes founder-counter-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .founder-spin, .founder-counter { animation: none; }
+}
+
 /* canvas- styles */
 .canvas-loader {
   font-size: 10px;

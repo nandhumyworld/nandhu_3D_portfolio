@@ -1,2 +1,67 @@
-export const certifications = [];
-export const currentlyLearning = [];
+export const certifications = [
+  {
+    name: "Guidewire ClaimCenter 7.x — Technical Certification",
+    issuer: "Guidewire",
+    year: 2013,
+    category: "tech",
+    credentialUrl: "",
+    logo: "",
+  },
+  {
+    name: "Guidewire ClaimCenter 7.x — Functional Certification",
+    issuer: "Guidewire",
+    year: 2013,
+    category: "tech",
+    credentialUrl: "",
+    logo: "",
+  },
+  {
+    name: "Digital Marketing",
+    issuer: "Self-directed / Industry programs",
+    year: 2024,
+    category: "marketing",
+    credentialUrl: "",
+    logo: "",
+  },
+  {
+    name: "AI Architect & Agent Engineering",
+    issuer: "Self-directed / Industry programs",
+    year: 2024,
+    category: "tech",
+    credentialUrl: "",
+    logo: "",
+  },
+  {
+    name: "3D Printing & Maker Studio",
+    issuer: "Self-directed / Industry programs",
+    year: 2025,
+    category: "tech",
+    credentialUrl: "",
+    logo: "",
+  },
+  {
+    name: "Deep Yogic Practices",
+    issuer: "Trained under Guru",
+    year: 2025,
+    category: "other",
+    credentialUrl: "",
+    logo: "",
+  },
+  {
+    name: "Natural Farming Practices",
+    issuer: "Field-trained across multiple farms & teachers",
+    year: 2022,
+    category: "other",
+    credentialUrl: "",
+    logo: "",
+  },
+];
+
+export const currentlyLearning = [
+  "Generative AI architecture & multi-agent system design",
+  "Natural farming, permaculture, and value-added farm products",
+  "3D printing for product prototyping",
+  "Brand storytelling, video, and digital presence",
+  "Yogic philosophy and self-inquiry",
+  "Building Freedom Architects Tribe as a teaching system",
+];

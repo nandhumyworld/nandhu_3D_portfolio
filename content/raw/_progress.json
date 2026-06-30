@@ -1,6 +1,6 @@
 {
-  "completed": ["01-hero", "02-seeker"],
-  "current": "03-timeline",
+  "completed": ["01-hero", "02-seeker", "03-timeline", "04-human", "05-career", "06-coach", "07-tribe", "08-eyediaworks", "09-farm", "10-certifications", "11-dividers"],
+  "current": null,
   "rooms": [
     "01-hero",
     "02-seeker",
@@ -14,6 +14,7 @@
     "10-certifications",
     "11-dividers"
   ],
-  "lastUpdated": "2026-06-29T00:00:00Z",
-  "allComplete": false
+  "lastUpdated": "2026-06-30T00:00:00Z",
+  "allComplete": true,
+  "homePageOrder": ["hero", "human", "story", "career", "certifications", "eyediaworks", "coach", "tribe", "farm", "seeker", "connect"]
 }

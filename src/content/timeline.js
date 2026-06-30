@@ -1,2 +1,23 @@
-export const timeline = [];
+export const timeline = [
+  { year: 1989, title: "Born — a Cancerian", category: "life", story: "Chennai, Tamil Nadu.", image: "" },
+  { year: 2004, title: "10th grade — Valliammal Mat. Hr. Sec. School", category: "life", story: "Obedient, rank-holding, restless experimenter. Aspired to be a scientist.", image: "" },
+  { year: 2004, title: "Junk art — temple inside a bottle", category: "arts", story: "Built a temple structure inside a glass bottle without breaking it. Featured in a Tamil Nadu state magazine.", image: "" },
+  { year: 2006, title: "Polytechnic — Thai Moogambigai", category: "life", story: "Diploma in Electronics & Communication. First exposure to computers; fell for Digital Signal Processing.", image: "" },
+  { year: 2008, title: "Picked up the guitar", category: "music", story: "Self-taught during engineering — the school-era music band itch returning.", image: "" },
+  { year: 2010, title: "BE Electronics & Communication — Sakthi Mariamman Engineering College", category: "life", story: "Final-year self-project: fuzzy logic on digital image processing to classify benign vs malignant cancer cells from CT scans.", image: "" },
+  { year: 2010, title: "Joined HCL as a fresher", category: "career", story: "Trained in Oracle, deployed to the healthcare domain. Java application support & development for Pfizer's drug-discovery phase.", image: "" },
+  { year: 2010, title: "Royal Enfield Thunderbird", category: "life", story: "The dream bike. Guitar, camera, Thunderbird — total bliss.", image: "" },
+  { year: 2011, title: "First camera — into photography", category: "photography", story: "Social media boom era. Photowalks, corporate competitions, prizes. Later: product shoots, fashion, and eventually nature.", image: "" },
+  { year: 2012, title: "Into Guidewire — Insurance domain", category: "career", story: "Got certified, got hands dirty across multiple projects for Europe and Asia-Pacific clients.", image: "" },
+  { year: 2015, title: "Canada on L1 — Technical Lead", category: "career", story: "Travelled to Canada as tech lead; direct client rapport. Roughly 10 projects in 7 Guidewire years.", image: "" },
+  { year: 2017, title: "Joined EY", category: "career", story: "Continued the Guidewire / insurance journey through Big4 consulting.", image: "" },
+  { year: 2017, title: "Married", category: "life", story: "Building a small family.", image: "" },
+  { year: 2019, title: "Bought Nandhavanam Farm", category: "farm", story: "The shift begins — land of my own, away from the city, surrounded by trees.", image: "" },
+  { year: 2022, title: "Left HCL — six-month sabbatical", category: "career", story: "First pause after a decade of code. Half a year to breathe before the next chapter.", image: "" },
+  { year: 2022, title: "Joined Stratus Technologies", category: "career", story: "The last corporate engagement — Guidewire Senior Tech Lead, this time on remote terms.", image: "" },
+  { year: 2024, title: "Left IT — for good (September 2024)", category: "career", story: "Walked out of the rat race after fifteen years. The most valuable system I would ever build was my own life.", image: "" },
+  { year: 2024, title: "Founded EyediaWorks", category: "career", story: "IT-as-a-service brand — building products from my own ideas, serving local businesses and personal systems.", image: "" },
+  { year: 2025, title: "Deep yoga training with Guru", category: "spiritual", story: "Practising deep yogic meditation; the slow build of confidence to live by self-inquiry. Understanding the universe within.", image: "" },
+  { year: 2026, title: "Launched Freedom Architects Tribe", category: "coaching", story: "A community for IT professionals trapped in the 9–5 — learn to build, sell, and design systems for a life of peace and complete freedom.", image: "" },
+];
 export { categoryColors } from "./theme";
