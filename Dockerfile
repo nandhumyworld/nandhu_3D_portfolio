@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install deps with deterministic lockfile
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Build-time secrets — Vite inlines these at build time.
 # Set them as Coolify "Build Args" (NOT runtime env vars).
