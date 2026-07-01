@@ -10,34 +10,44 @@ import {
 
 import CanvasLoader from "../Loader";
 
-const Ball = (props) => {
-  const [decal] = useTexture([props.imgUrl]);
+const Ball = ({ imgUrl, color = "#e6d8b0" }) => {
+  const [decal] = useTexture([imgUrl]);
 
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
-      <ambientLight intensity={0.25} />
-      <directionalLight position={[0, 0, 0.05]} />
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[3, 3, 3]} intensity={0.9} />
+      <directionalLight position={[-3, -1, -2]} intensity={0.35} color='#8ab6ff' />
       <mesh castShadow receiveShadow scale={2.75}>
-        <icosahedronGeometry args={[1, 1]} />
+        {/* detail=4 → smooth sphere; smoothing removes the flat-shaded facets */}
+        <icosahedronGeometry args={[1, 4]} />
         <meshStandardMaterial
-          color='#fff8eb'
+          color={color}
           polygonOffset
           polygonOffsetFactor={-5}
-          flatShading
+          roughness={0.35}
+          metalness={0.25}
         />
+        {/* Two decals on opposite hemispheres so the logo is visible from
+            either side while the ball auto-rotates. */}
         <Decal
           position={[0, 0, 1]}
-          rotation={[2 * Math.PI, 0, 6.25]}
+          rotation={[0, 0, 0]}
           scale={1}
           map={decal}
-          flatShading
+        />
+        <Decal
+          position={[0, 0, -1]}
+          rotation={[0, Math.PI, 0]}
+          scale={1}
+          map={decal}
         />
       </mesh>
     </Float>
   );
 };
 
-const BallCanvas = ({ icon }) => {
+const BallCanvas = ({ icon, color }) => {
   return (
     <Canvas
       frameloop='always'
@@ -50,7 +60,7 @@ const BallCanvas = ({ icon }) => {
           autoRotate
           autoRotateSpeed={2}
         />
-        <Ball imgUrl={icon} />
+        <Ball imgUrl={icon} color={color} />
       </Suspense>
 
       <Preload all />

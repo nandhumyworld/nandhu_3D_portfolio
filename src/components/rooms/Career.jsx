@@ -9,13 +9,14 @@ import nodejs from "../../assets/tech/nodejs.png";
 import docker from "../../assets/tech/docker.png";
 import git from "../../assets/tech/git.png";
 
+// Planet-inspired base colors so each ball reads as its own world.
 const PRESENT_STACK = [
-  { name: "JavaScript", icon: javascript },
-  { name: "TypeScript", icon: typescript },
-  { name: "React", icon: reactjs },
-  { name: "Node.js", icon: nodejs },
-  { name: "Docker", icon: docker },
-  { name: "Git", icon: git },
+  { name: "JavaScript", icon: javascript, color: "#d4a437" }, // Jupiter gold
+  { name: "TypeScript", icon: typescript, color: "#3d5a80" }, // Neptune deep blue
+  { name: "React",      icon: reactjs,    color: "#7cc4e0" }, // Uranus cyan
+  { name: "Node.js",    icon: nodejs,     color: "#6b8e23" }, // moss green
+  { name: "Docker",     icon: docker,     color: "#2ea4c7" }, // docker teal
+  { name: "Git",        icon: git,        color: "#c66a3a" }, // Mars rust
 ];
 
 export default function Career() {
@@ -130,7 +131,7 @@ export default function Career() {
             {PRESENT_STACK.map((t) => (
               <div key={t.name} className="w-24 h-24" title={t.name}>
                 <Suspense fallback={<div className="w-full h-full" />}>
-                  <BallCanvas icon={t.icon} />
+                  <BallCanvas icon={t.icon} color={t.color} />
                 </Suspense>
               </div>
             ))}
