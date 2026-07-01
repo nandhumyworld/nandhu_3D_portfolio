@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 import Nav from "./components/shared/Nav";
 import FloatingCTA from "./components/shared/FloatingCTA";
@@ -22,7 +22,29 @@ import Connect from "./components/rooms/Connect";
 
 import { dividers } from "./content/dividers";
 
+// Hold Three.js off the critical path: mount StarsCanvas only after first paint
+// AND only when the device isn't small / low-power / battery-saving. Cuts ~200KB
+// of parsed JS from the initial paint on mobile.
+function useDeferredStars() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const small = window.matchMedia("(max-width: 767px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (small || reduced) return;
+    const cb = () => setReady(true);
+    const ric = window.requestIdleCallback || ((fn) => setTimeout(fn, 800));
+    const id = ric(cb, { timeout: 2000 });
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(id);
+      else clearTimeout(id);
+    };
+  }, []);
+  return ready;
+}
+
 export default function App() {
+  const showStars = useDeferredStars();
   return (
     <div className="bg-bg-dark text-text-dark min-h-screen relative isolate">
       {/* Deepest parallax layer — Milky Way galactic band, scrolls at 0.3x. */}
@@ -33,11 +55,13 @@ export default function App() {
 
       {/* Above the nebula — fixed star field that stays put while you scroll,
           so stars appear to drift past the nebula clouds. */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-60">
-        <Suspense fallback={null}>
-          <StarsCanvas />
-        </Suspense>
-      </div>
+      {showStars && (
+        <div className="fixed inset-0 z-0 pointer-events-none opacity-60">
+          <Suspense fallback={null}>
+            <StarsCanvas />
+          </Suspense>
+        </div>
+      )}
 
       <Nav />
       <main className="relative z-10">

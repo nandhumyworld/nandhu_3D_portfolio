@@ -1,4 +1,15 @@
 import { useState } from "react";
+import ResponsiveImg from "./ResponsiveImg";
+
+// Widths must match what scripts/optimize-images.mjs produced for the
+// human/photography folder (and any other gallery source).
+const GALLERY_WIDTHS = [400, 800, 1600];
+
+function fullSize(src) {
+  const dot = src.lastIndexOf(".");
+  const base = dot === -1 ? src : src.slice(0, dot);
+  return `${base}-w1600.webp`.split("/").map(encodeURIComponent).join("/");
+}
 
 export default function Gallery({ items = [], columns = 3 }) {
   const [active, setActive] = useState(null);
@@ -16,10 +27,11 @@ export default function Gallery({ items = [], columns = 3 }) {
               onClick={() => setActive(item)}
               className="group block w-full overflow-hidden rounded-lg bg-light-border"
             >
-              <img
+              <ResponsiveImg
                 src={item.src}
+                widths={GALLERY_WIDTHS}
+                sizes={`(min-width: 1024px) ${Math.floor(100 / columns)}vw, (min-width: 640px) 50vw, 100vw`}
                 alt={item.caption || ""}
-                loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               {item.caption && (
@@ -47,7 +59,7 @@ export default function Gallery({ items = [], columns = 3 }) {
             </svg>
           </button>
           <figure className="max-w-5xl max-h-[90vh] flex flex-col items-center">
-            <img src={active.src} alt={active.caption || ""} className="max-h-[80vh] object-contain" />
+            <img src={fullSize(active.src)} alt={active.caption || ""} className="max-h-[80vh] object-contain" />
             {active.caption && (
               <figcaption className="mt-3 text-sm text-text-dark/70 text-center">{active.caption}</figcaption>
             )}

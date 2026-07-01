@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import ResponsiveImg from "./ResponsiveImg";
+
+const BRAND_WIDTHS = [128, 256];
 
 const electrons = [
   {
@@ -52,9 +55,13 @@ export default function FounderAtom() {
       <div className="absolute z-20 flex flex-col items-center pointer-events-none">
         <div className="relative">
           <div className="absolute inset-0 rounded-full bg-accent-gold/25 blur-2xl scale-125" />
-          <img
+          <ResponsiveImg
             src="/images/brand/nandhu-kishore.png"
+            widths={BRAND_WIDTHS}
+            sizes="(min-width: 768px) 144px, 112px"
             alt="Nandhu Kishore — Founder"
+            loading="eager"
+            fetchPriority="high"
             className="relative w-28 h-28 md:w-36 md:h-36 rounded-full object-cover border-2 border-accent-gold/70 shadow-2xl shadow-accent-gold/30 bg-bg-dark"
           />
         </div>
@@ -88,8 +95,10 @@ export default function FounderAtom() {
               <div
                 className={`w-14 h-14 md:w-16 md:h-16 rounded-full ${e.bg} border border-accent-gold/50 shadow-lg shadow-black/40 flex items-center justify-center overflow-hidden`}
               >
-                <img
+                <ResponsiveImg
                   src={e.logo}
+                  widths={BRAND_WIDTHS}
+                  sizes="(min-width: 768px) 64px, 56px"
                   alt={e.name}
                   className="w-full h-full object-contain p-1.5"
                 />

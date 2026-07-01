@@ -1,7 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { profile } from "../../constants/profile";
 import SocialLinks from "../shared/SocialLinks";
+
+// Calendly widget pulls in ~500KB (widget bundle + Datadog RUM + Airbrake +
+// reCAPTCHA). Defer injection until the Connect section is about to scroll
+// into view so it stays off the initial-load waterfall.
+function loadCalendlyOnce() {
+  if (document.getElementById("calendly-script")) return;
+  const s = document.createElement("script");
+  s.id = "calendly-script";
+  s.src = "https://assets.calendly.com/assets/external/widget.js";
+  s.async = true;
+  document.body.appendChild(s);
+  const link = document.createElement("link");
+  link.id = "calendly-css";
+  link.rel = "stylesheet";
+  link.href = "https://assets.calendly.com/assets/external/widget.css";
+  document.head.appendChild(link);
+}
 
 const SERVICE = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -26,26 +43,39 @@ export default function Connect() {
   const [form, setForm] = useState(INITIAL);
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [errorMsg, setErrorMsg] = useState("");
+  const [calendlyReady, setCalendlyReady] = useState(false);
+  const calendlyRef = useRef(null);
 
-  // Init EmailJS once + lazy-load Calendly widget
+  // Init EmailJS once (tiny — safe to do up-front).
   useEffect(() => {
-    if (PUBLIC_KEY) {
-      // v3 API: init accepts the key as a plain string
-      emailjs.init(PUBLIC_KEY);
-    }
-    if (!document.getElementById("calendly-script")) {
-      const s = document.createElement("script");
-      s.id = "calendly-script";
-      s.src = "https://assets.calendly.com/assets/external/widget.js";
-      s.async = true;
-      document.body.appendChild(s);
-      const link = document.createElement("link");
-      link.id = "calendly-css";
-      link.rel = "stylesheet";
-      link.href = "https://assets.calendly.com/assets/external/widget.css";
-      document.head.appendChild(link);
-    }
+    if (PUBLIC_KEY) emailjs.init(PUBLIC_KEY);
   }, []);
+
+  // Inject Calendly only when the Connect section is within ~600px of the
+  // viewport. Falls back to immediate load if IntersectionObserver isn't
+  // available (very old browsers).
+  useEffect(() => {
+    if (calendlyReady) return;
+    if (typeof IntersectionObserver === "undefined") {
+      loadCalendlyOnce();
+      setCalendlyReady(true);
+      return;
+    }
+    const el = calendlyRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          loadCalendlyOnce();
+          setCalendlyReady(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [calendlyReady]);
 
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
@@ -198,10 +228,13 @@ export default function Connect() {
           <div className="bg-white/[0.03] border border-white/10 rounded-xl p-6 md:p-8">
             <h3 className="font-serif text-xl text-accent-gold mb-5">Pick a 30-min slot directly</h3>
             <div
-              className="calendly-inline-widget rounded-lg overflow-hidden"
-              data-url={profile.calendly}
+              ref={calendlyRef}
+              className={calendlyReady ? "calendly-inline-widget rounded-lg overflow-hidden" : "rounded-lg overflow-hidden flex items-center justify-center text-text-dark/50 text-sm"}
+              data-url={calendlyReady ? profile.calendly : undefined}
               style={{ minWidth: 320, height: 630 }}
-            />
+            >
+              {!calendlyReady && "Loading scheduler…"}
+            </div>
             <a
               href={profile.calendly}
               target="_blank"

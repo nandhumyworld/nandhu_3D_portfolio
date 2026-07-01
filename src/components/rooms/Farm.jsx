@@ -1,6 +1,15 @@
 import { lazy, Suspense } from "react";
 import { farm } from "../../content/farm";
+import ResponsiveImg from "../shared/ResponsiveImg";
 const EarthCanvas = lazy(() => import("../canvas/Earth"));
+
+const FARM_WIDTHS = [400, 800, 1600];
+
+function largest(src) {
+  const dot = src.lastIndexOf(".");
+  const base = dot === -1 ? src : src.slice(0, dot);
+  return `${base}-w1600.webp`;
+}
 
 export default function Farm() {
   return (
@@ -76,15 +85,16 @@ export default function Farm() {
               {farm.gallery.map((src, i) => (
                 <a
                   key={i}
-                  href={src}
+                  href={largest(src)}
                   target="_blank"
                   rel="noreferrer"
                   className="block overflow-hidden rounded-lg bg-black/40 aspect-square"
                 >
-                  <img
+                  <ResponsiveImg
                     src={src}
+                    widths={FARM_WIDTHS}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                     alt={`${farm.name} — photo ${i + 1}`}
-                    loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </a>

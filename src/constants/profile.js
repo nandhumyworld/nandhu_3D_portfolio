@@ -14,7 +14,7 @@ export const profile = {
     "A system builder who searches for order in code, stillness in soil, and truth in silence — and keeps finding they're the same thing.",
   manifesto:
     "We are not spiritual beings on a human journey. We are human beings on a spiritual journey.",
-  avatar: "/images/profile/hero.png",
+  avatar: "/images/profile/hero-w576.webp",
   email: "nandhu.myworld@gmail.com",
   calendly: "https://calendly.com/nandhu-myworld/30min",
   social: [
