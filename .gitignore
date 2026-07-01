@@ -33,3 +33,6 @@ dist-ssr
 
 # Source content (not site code)
 bio/
+
+# HEIC backups from convert-heic.mjs — remove locally after spot-checking farm gallery
+*.HEIC.bak

@@ -1,6 +1,12 @@
+import { lazy, Suspense } from "react";
+
 import Nav from "./components/shared/Nav";
 import FloatingCTA from "./components/shared/FloatingCTA";
 import RoomDivider from "./components/shared/RoomDivider";
+import NebulaBackground from "./components/shared/NebulaBackground";
+import MilkyWayGalaxy from "./components/shared/MilkyWayGalaxy";
+
+const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
 
 import Hero from "./components/rooms/Hero";
 import Human from "./components/rooms/Human";
@@ -18,9 +24,23 @@ import { dividers } from "./content/dividers";
 
 export default function App() {
   return (
-    <div className="bg-bg-dark text-text-dark min-h-screen">
+    <div className="bg-bg-dark text-text-dark min-h-screen relative isolate">
+      {/* Deepest parallax layer — Milky Way galactic band, scrolls at 0.3x. */}
+      <MilkyWayGalaxy />
+
+      {/* Mid parallax layer — nebula clouds, scrolls at 0.5x. */}
+      <NebulaBackground />
+
+      {/* Above the nebula — fixed star field that stays put while you scroll,
+          so stars appear to drift past the nebula clouds. */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-60">
+        <Suspense fallback={null}>
+          <StarsCanvas />
+        </Suspense>
+      </div>
+
       <Nav />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <RoomDivider line={dividers[0]} />
         <Human />

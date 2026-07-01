@@ -2,21 +2,32 @@ import { useState } from "react";
 import { human } from "../../content/human";
 import Gallery from "../shared/Gallery";
 
-const TABS = [
+const ALL_TABS = [
   { id: "photography", label: "Photography" },
   { id: "music", label: "Music" },
   { id: "arts", label: "Arts" },
   { id: "events", label: "Events" },
 ];
 
+// Only show a tab once its section has real content — no dead clicks.
+function tabHasContent(id) {
+  const s = human[id];
+  if (!s) return false;
+  if (id === "music") return (s.tracks || []).length > 0;
+  if (id === "events") return (s.items || []).length > 0;
+  return (s.gallery || []).length > 0;
+}
+
+const TABS = ALL_TABS.filter((t) => tabHasContent(t.id));
+
 export default function Human() {
-  const [tab, setTab] = useState("photography");
+  const [tab, setTab] = useState(TABS[0]?.id || "photography");
   const section = human[tab];
 
   return (
     <section
       id="human"
-      className="relative bg-bg-dark text-text-dark py-24 px-6 overflow-hidden"
+      className="relative text-text-dark py-24 px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-50"

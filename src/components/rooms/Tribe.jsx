@@ -4,7 +4,7 @@ export default function Tribe() {
   return (
     <section
       id="tribe"
-      className="relative bg-bg-dark text-text-dark py-24 px-6 overflow-hidden"
+      className="relative text-text-dark py-24 px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-50"

@@ -1,6 +1,6 @@
 export const seeker = {
   coreQuote:
-    "We are not spiritual beings on a human journey. We are human beings on a spiritual journey.",
+    "To know yourself is spirituality. Everything else is decoration.",
 
   path: "A yogic practitioner. Received upadesam from a living guru and practises a yoga close to Vasi Yogam. Insights drawn from Tamil scriptures and the books that have outlived their authors. The ultimate aim — to return to where I came from.",
 
@@ -17,7 +17,6 @@ export const seeker = {
 
   teachings: [
     "God is emptiness — simple, powerful, everywhere. You are in it. It is in you.",
-    "To know yourself is spirituality. Everything else is decoration.",
     "Don't go looking for God. Stop looking — and notice.",
     "When every question is answered, you stop asking who you are.",
     "Life is a game. Understand it — and it ends.",

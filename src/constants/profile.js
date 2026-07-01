@@ -7,12 +7,8 @@ export const profile = {
     "Seeker",
     "Coach",
     "Founder",
-    "Architect",
     "Farmer",
     "Artist",
-    "Musician",
-    "Photographer",
-    "Lifelong Experimenter",
   ],
   essence:
     "A system builder who searches for order in code, stillness in soil, and truth in silence — and keeps finding they're the same thing.",

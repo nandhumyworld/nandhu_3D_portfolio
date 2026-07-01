@@ -8,8 +8,7 @@ export const career = {
       years: "2022–2024",
       location: "Remote",
       highlights: [
-        "Two-year run as Senior Tech Lead — the last corporate chapter.",
-        "Walked out for good in September 2024 to build life on my own terms.",
+        "Senior Tech Lead on remote-first Guidewire delivery — architecture calls, code reviews, sprint pace.",
       ],
       logo: "",
     },
@@ -19,8 +18,7 @@ export const career = {
       years: "2020–2022",
       location: "Chennai",
       highlights: [
-        "Returned to HCL — the place where the engineering instinct first sharpened.",
-        "Stepped away in 2022; took a six-month sabbatical before the Stratus chapter.",
+        "Senior Tech Lead on Guidewire ClaimCenter engagements — technical ownership, mentoring, upgrade paths.",
       ],
       logo: "",
     },
@@ -32,7 +30,6 @@ export const career = {
       highlights: [
         "Big4 consulting on full-suite Guidewire implementations — Auto, Property, Workers Compensation.",
         "Led data conversion streams: legacy mainframe → Guidewire across millions of policies and claims.",
-        "Built the case for personal freedom one corporate deadline at a time.",
       ],
       logo: "",
     },
@@ -42,10 +39,9 @@ export const career = {
       years: "2010–2017",
       location: "Chennai · Canada (L1, 2015–2017)",
       highlights: [
-        "Joined as a fresher in 2010 — Oracle training, then Pfizer's drug-discovery support on Java.",
-        "Pivoted into Guidewire in 2012; certified on ClaimCenter 7.x (technical + functional).",
-        "Flew to Canada on L1 in 2015 as Senior Tech Lead — direct client rapport, onsite team of 10.",
-        "~10 projects across Europe and Asia-Pacific clients before the second exit.",
+        "Certified on ClaimCenter 7.x (technical + functional) in 2012; primary Guidewire SME on the account thereafter.",
+        "Onsite Senior Tech Lead in Canada — direct client rapport, offshore/onshore coordination for a 10-member team.",
+        "~10 Guidewire projects across Europe and Asia-Pacific clients; earlier Java work on Pfizer drug-discovery support.",
       ],
       logo: "",
     },

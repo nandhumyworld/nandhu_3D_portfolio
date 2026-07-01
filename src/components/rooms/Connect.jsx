@@ -90,7 +90,7 @@ export default function Connect() {
   }
 
   return (
-    <section id="connect" className="relative bg-bg-dark text-text-dark py-24 px-6 overflow-hidden">
+    <section id="connect" className="relative text-text-dark py-24 px-6 overflow-hidden">
       <div
         className="absolute inset-0 opacity-50"
         style={{

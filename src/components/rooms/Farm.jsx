@@ -1,10 +1,12 @@
+import { lazy, Suspense } from "react";
 import { farm } from "../../content/farm";
+const EarthCanvas = lazy(() => import("../canvas/Earth"));
 
 export default function Farm() {
   return (
     <section
       id="farm"
-      className="relative bg-bg-dark text-text-dark py-24 px-6 overflow-hidden"
+      className="relative text-text-dark py-24 px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-50"
@@ -25,10 +27,16 @@ export default function Farm() {
         </div>
 
         {farm.story && (
-          <p className="text-text-dark/85 leading-relaxed max-w-3xl mx-auto mb-14 text-center">
+          <p className="text-text-dark/85 leading-relaxed max-w-3xl mx-auto mb-10 text-center">
             {farm.story}
           </p>
         )}
+
+        <div className="h-72 md:h-96 mb-14 max-w-3xl mx-auto">
+          <Suspense fallback={<div className="w-full h-full" />}>
+            <EarthCanvas />
+          </Suspense>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-10 mb-14">
           {farm.philosophy.length > 0 && (
@@ -75,7 +83,7 @@ export default function Farm() {
                 >
                   <img
                     src={src}
-                    alt=""
+                    alt={`${farm.name} — photo ${i + 1}`}
                     loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />

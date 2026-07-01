@@ -6,7 +6,6 @@ export const human = {
       { src: "/images/human/photography/Beauty and wild.jpg", caption: "Beauty and the wild — what stays untamed when no one's watching.", year: 2019 },
       { src: "/images/human/photography/light painting.jpg", caption: "Light painting — drawing with time in the dark.", year: 2014 },
       { src: "/images/human/photography/One of a Kind.jpg", caption: "One of a kind — the frame I knew would never come back.", year: 2017 },
-      { src: "/images/human/photography/Nandhu Kishore_51359783.JPG", caption: "Behind the lens.", year: 2018 },
       { src: "/images/human/photography/capture long exposure shot kalari.JPG", caption: "Kalari — long exposure, breath held.", year: 2016 },
     ],
   },

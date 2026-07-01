@@ -34,7 +34,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-bg-dark text-text-dark overflow-hidden"
+      className="relative min-h-screen text-text-dark overflow-hidden"
     >
       {/* Subtle radial gradient backdrop — earthy palette */}
       <div

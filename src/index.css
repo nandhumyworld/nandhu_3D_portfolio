@@ -12,12 +12,17 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent horizontal overflow from parallax layers without creating a
+     second vertical scroll container. Handled at the root here — do NOT
+     add overflow-x:hidden on nested divs (that makes them scrollable). */
+  overflow-x: hidden;
 }
 
 body {
   font-family: "Inter", system-ui, sans-serif;
   background: #0b0d0c;
   color: #e8e6e1;
+  overflow-x: hidden;
 }
 
 .hash-span {

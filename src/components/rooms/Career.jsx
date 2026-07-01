@@ -1,10 +1,28 @@
+import { lazy, Suspense } from "react";
 import { career } from "../../content/career";
+const ComputersCanvas = lazy(() => import("../canvas/Computers"));
+const BallCanvas = lazy(() => import("../canvas/Ball"));
+import javascript from "../../assets/tech/javascript.png";
+import typescript from "../../assets/tech/typescript.png";
+import reactjs from "../../assets/tech/reactjs.png";
+import nodejs from "../../assets/tech/nodejs.png";
+import docker from "../../assets/tech/docker.png";
+import git from "../../assets/tech/git.png";
+
+const PRESENT_STACK = [
+  { name: "JavaScript", icon: javascript },
+  { name: "TypeScript", icon: typescript },
+  { name: "React", icon: reactjs },
+  { name: "Node.js", icon: nodejs },
+  { name: "Docker", icon: docker },
+  { name: "Git", icon: git },
+];
 
 export default function Career() {
   return (
     <section
       id="career"
-      className="relative bg-bg-dark text-text-dark py-24 px-6 overflow-hidden"
+      className="relative text-text-dark py-24 px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-50"
@@ -14,11 +32,17 @@ export default function Career() {
         }}
       />
       <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <p className="text-accent-gold uppercase tracking-[0.3em] text-xs mb-3">
             Room · the engine room
           </p>
           <h2 className="font-serif text-4xl md:text-5xl">Career &amp; Projects</h2>
+        </div>
+
+        <div className="h-72 md:h-96 mb-6">
+          <Suspense fallback={<div className="w-full h-full" />}>
+            <ComputersCanvas />
+          </Suspense>
         </div>
 
         {career.summary && (
@@ -93,22 +117,57 @@ export default function Career() {
           </div>
         )}
 
-        {career.skills.length > 0 && (
-          <div>
-            <h3 className="font-serif text-2xl text-accent-gold mb-6 text-center">Skills</h3>
-            <ul className="flex flex-wrap justify-center gap-2">
-              {career.skills.map((s, i) => (
-                <li
-                  key={i}
-                  className="text-xs px-3 py-1.5 border border-white/15 rounded-full text-text-dark/80"
-                >
-                  {s.name}
-                  <span className="text-text-dark/40 ml-1.5">· {s.category}</span>
-                </li>
-              ))}
-            </ul>
+        <div className="mb-16">
+          <div className="text-center mb-6">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-text-dark/50 mb-1">
+              Present-day stack
+            </p>
+            <p className="text-sm text-text-dark/60">
+              What EyediaWorks ships on today.
+            </p>
           </div>
-        )}
+          <div className="flex flex-wrap justify-center gap-6">
+            {PRESENT_STACK.map((t) => (
+              <div key={t.name} className="w-24 h-24" title={t.name}>
+                <Suspense fallback={<div className="w-full h-full" />}>
+                  <BallCanvas icon={t.icon} />
+                </Suspense>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {career.skills.length > 0 && (() => {
+          const groups = { language: [], tool: [], domain: [] };
+          career.skills.forEach((s) => {
+            (groups[s.category] || (groups[s.category] = [])).push(s.name);
+          });
+          const labels = { language: "Languages", tool: "Tools & Platforms", domain: "Domain" };
+          return (
+            <div>
+              <h3 className="font-serif text-2xl text-accent-gold mb-6 text-center">Skills</h3>
+              <div className="space-y-5 max-w-4xl mx-auto">
+                {["language", "tool", "domain"].map((key) => (
+                  groups[key]?.length > 0 && (
+                    <div key={key}>
+                      <p className="text-[10px] uppercase tracking-[0.25em] text-text-dark/50 mb-2">{labels[key]}</p>
+                      <ul className="flex flex-wrap gap-2">
+                        {groups[key].map((name, i) => (
+                          <li
+                            key={i}
+                            className="text-xs px-3 py-1.5 border border-white/15 rounded-full text-text-dark/80"
+                          >
+                            {name}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </div>
     </section>
   );

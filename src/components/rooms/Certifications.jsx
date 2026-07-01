@@ -12,7 +12,7 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="relative bg-bg-dark text-text-dark py-24 px-6 overflow-hidden"
+      className="relative text-text-dark py-24 px-6 overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-40"
@@ -55,6 +55,13 @@ export default function Certifications() {
                     <div className="flex-1 min-w-0">
                       <p className="text-text-dark text-sm leading-snug">{c.name}</p>
                       <p className="text-xs text-text-dark/60 mt-1">{c.issuer}</p>
+                      {c.tracks?.length > 0 && (
+                        <ul className="mt-2 space-y-1">
+                          {c.tracks.map((t, ti) => (
+                            <li key={ti} className="text-xs text-text-dark/75">· {t}</li>
+                          ))}
+                        </ul>
+                      )}
                       <p className="text-[10px] uppercase tracking-widest mt-2" style={{ color }}>
                         {c.year} · {c.category}
                       </p>
